@@ -1,6 +1,7 @@
 import Badge from "../components/Badge";
 import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
+import ButtonTambah from "../components/Admin/ButtonTambah";
 import BaseCheckbox from "../components/BaseCheckbox";
 import BaseInput from "../components/BaseInput";
 import BaseDropdown from "../components/BaseDropdown";
@@ -23,6 +24,7 @@ export default {
     Vue.component(Badge.name, Badge);
     Vue.component(BaseAlert.name, BaseAlert);
     Vue.component(BaseButton.name, BaseButton);
+    Vue.component(ButtonTambah.name, ButtonTambah);
     Vue.component(BaseInput.name, BaseInput);
     Vue.component(BaseNav.name, BaseNav);
     Vue.component(BaseDropdown.name, BaseDropdown);

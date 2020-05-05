@@ -14,26 +14,26 @@
       </template>
     </side-bar>
     <div class="main-content" :data="sidebarBackground">
-      <dashboard-navbar></dashboard-navbar>
+      <home-navbar></home-navbar>
 
       <div @click="toggleSidebar">
         <fade-transition :duration="200" origin="center top" mode="out-in">
           <!-- your content here -->
           <router-view></router-view>
         </fade-transition>
-        <content-footer v-if="!$route.meta.hideFooter"></content-footer>
+        <home-footer v-if="!$route.meta.hideFooter"></home-footer>
       </div>
     </div>
   </div>
 </template>
 <script>
-import DashboardNavbar from "./../Admin/HomeNavbar.vue";
-import ContentFooter from "./../Admin/HomeFooter.vue";
+import HomeNavbar from "./HomeNavbar";
+import HomeFooter from "./HomeFooter";
 import { FadeTransition } from "vue2-transitions";
 export default {
   components: {
-    DashboardNavbar,
-    ContentFooter,
+    HomeNavbar,
+    HomeFooter,
     FadeTransition
   },
   data() {

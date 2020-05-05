@@ -6,7 +6,7 @@
           <h3 class="mb-0" :class="type === 'dark' ? 'text-white': ''">{{title}}</h3>
         </div>
         <div class="col text-right">
-          <base-button type="primary" size="sm">See all</base-button>
+          <button-tambah type="primary" size="sm">Tambah</button-tambah>
         </div>
       </div>
     </div>
@@ -27,7 +27,10 @@
 
         <template slot-scope="{row}">
           <th scope="row"></th>
-          <td class="budget">{{row.nama_kategori}}</td>
+          <tr v-for="r in row" v-bind:key="r.id">
+            <!-- <td>{{ r.id }}</td> -->
+            <td class="budget">{{r.nama_kategori}}</td>
+          </tr>
         </template>
       </base-table>
     </div>
@@ -56,25 +59,35 @@ export default {
   },
   methods: {
     fetchCategory() {
-      let data = [];
-      alert(this.dataKategori);
-      fetch("http://192.168.43.240:2000/martabak/kategori")
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(res) {
-          // this.tableData = res.Data;
-          // alert(res);
-          data = res.Data;
-          // tableData = data;
-        })
-        .catch(function(err) {
-          alert(err);
-        });
+      let data = [
+        {
+          id: 1,
+          nama_kategori: "abc"
+        },
+        {
+          id: 2,
+          nama_kategori: "namam"
+        }
+      ];
+      // alert(this.dataKategori);
+      // fetch("http://192.168.43.240:2000/martabak/kategori")
+      //   .then(function(response) {
+      //     return response.json();
+      //   })
+      //   .then(function(res) {
+      //     // this.tableData = res.Data;
+      //     // alert(res);
+      //     data = res.Data;
+      //     // tableData = data;
+      //   })
+      //   .catch(function(err) {
+      //     alert(err);
+      //   });
       // console.log("acak");
       // this.dataKategori = data;
-      tableData();
-      return data;
+      return {
+        data
+      };
     }
   },
   beforeMount() {

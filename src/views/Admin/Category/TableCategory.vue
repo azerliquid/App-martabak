@@ -6,7 +6,7 @@
           <h3 class="mb-0" :class="type === 'dark' ? 'text-white': ''">{{title}}</h3>
         </div>
         <div class="col text-right">
-          <button-tambah type="primary" size="sm">Tambah</button-tambah>
+          <base-button type="primary" size="sm">Tambah</base-button>
         </div>
       </div>
     </div>
@@ -26,11 +26,12 @@
         </template>
 
         <template slot-scope="{row}">
-          <th scope="row"></th>
-          <tr v-for="r in row" v-bind:key="r.id">
-            <!-- <td>{{ r.id }}</td> -->
-            <td class="budget">{{r.nama_kategori}}</td>
-          </tr>
+          <td class="budget">{{row.id_kategori}}</td>
+          <td class="budget">{{row.nama_kategori}}</td>
+          <td class="bugdet">
+            <base-button size="sm" type="primary" icon="ni ni-active-40">Edit</base-button>
+            <base-button size="sm" type="primary" icon="ni ni-fat-remove">Delete</base-button>
+          </td>
         </template>
       </base-table>
     </div>
@@ -44,6 +45,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "table-category",
   props: {
@@ -54,23 +56,25 @@ export default {
   },
   data() {
     return {
-      tableData: this.fetchCategory()
+      // baseUrl: process.env.VUE_APP_BASE_URL
+      tableData: []
     };
   },
   methods: {
     fetchCategory() {
-      let data = [
-        {
-          id: 1,
-          nama_kategori: "abc"
-        },
-        {
-          id: 2,
-          nama_kategori: "namam"
-        }
-      ];
+      // let dataDum = [
+      //   {
+      //     id: 1,
+      //     nama_kategori: "abc"
+      //   },
+      //   {
+      //     id: 2,
+      //     nama_kategori: "namam"
+      //   }
+      // ];
+      // this.tableData = dataDum;
       // alert(this.dataKategori);
-      // fetch("http://192.168.43.240:2000/martabak/kategori")
+      // fetch("http://localhost:2000/martabak/kategori")
       //   .then(function(response) {
       //     return response.json();
       //   })
@@ -85,14 +89,25 @@ export default {
       //   });
       // console.log("acak");
       // this.dataKategori = data;
-      return {
-        data
-      };
+      // return {
+      //   data
+      // };
+
+      axios.get("http://localhost:2000/martabak/kategori").then(response => {
+        // response.data.Data.forEach(element => {
+        // data.push(element);
+        this.tableData = response.data.Data;
+        // });
+      });
+      // console.log(data);
+
+      // return {
+      //   data
+      // };
     }
   },
   beforeMount() {
-    // this.fetchCategory();
-    // alert("ksdgfkg");
+    this.fetchCategory();
   }
 };
 </script>
